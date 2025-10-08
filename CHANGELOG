@@ -1,0 +1,692 @@
+0.9.12
+==============================================
+OSP-Installer: Fixes to the EjabberD installer location
+OSP-Core: Added User and Channel Banners - https://gitlab.com/osp-group/flask-nginx-rtmp-manager/-/merge_requests/427
+OSP-Core: Fixes for Global Webhooks - https://gitlab.com/osp-group/flask-nginx-rtmp-manager/-/merge_requests/430
+OSP-Core: LiveView.py Improvements - https://gitlab.com/osp-group/flask-nginx-rtmp-manager/-/merge_requests/429
+OSP-Core: Global Chat Moderators - https://gitlab.com/osp-group/flask-nginx-rtmp-manager/-/merge_requests/417
+OSP-Core: Sticker Improvements - https://gitlab.com/osp-group/flask-nginx-rtmp-manager/-/merge_requests/425
+OSP-Core: Standalone Clips - https://gitlab.com/osp-group/flask-nginx-rtmp-manager/-/merge_requests/409
+OSP-Core: Various Other System and DB Improvements and BugFixes
+
+
+0.9.11
+==============================================
+** BREAKING CHANGE **: Ejabberd's Internal Domain has been moved to osp.internal to elminate install complexity.  
+                       Previous installs will need to edit the /opt/ejabberd/conf/ejabberd.yml to swap your domain to osp.internal.
+                       Another option is to add `ospXMPPDomain` to your /opt/osp/conf/config.py and set the value to the name of your OSP Ejabberd domain name
+                       See: https://open-streaming-platform.readthedocs.io/en/latest/install/upgrades.html#chat-upgrade
+OSP-Core: Improvements to Admin Page UI - MR !399 (@Helix9618)
+OSP-Core: Configurable maximum size (MiB) for Sticker uploads. !397 (@Helix9618)
+OSP-Core: Configurable maximum sizes (MiB) for video upload and thumbnail upload !395 (@Helix9618)
+OSP-Core: Improvements to 'Stream Key', 'RTMP Ingest', and 'XMPP Token' fields for channel settings. !396 (@Helix9618)
+OSP-Core: Bumps VideoJs version to 8.9.0
+OSP-Core: Adds `ospXMPPDomain` as an option in the config.py
+OSP-Core: Adds ability for users to change username
+Ejabberd: Sets the default XMPP domain to osp.internal
+
+
+0.9.10
+==============================================
+OSP: Added Beta Support for OSP-Hub (hub.openstreamingplatform.com)
+OSP: OSP-Core, OSP-RTMP, and OSP-Proxy Python Dependencies have been moved to VirtualEnvironment. Will be migrated on upgrades
+OSP-Core: Improvement and Fixes to Video Clipping !388
+OSP-Core: Updated RTMP Ingest Labels !386
+OSP-Core: Truncates Video Comments > 2048 Characters
+OSP-Core: Fixes to Chat Popout Window
+OSP-Core: Fixes for HTML returns on Deleted Users
+OSP-Core: Adds User Notification on Video Processing Start and Completion
+OSP-Core: Fixes a possible JS xss vulnerability in the chat and profile system.
+OSP-Core: Formatting Change on Sort By Button
+OSP-Installer: Added check to ensure required SMTP values are present
+OSP-Installer: Moves Default Nginx Install to 1.22.1
+OSP-Installer: Moves Default Ejabberd Install to 23.04
+OSP-Installer: Moves Default ZLib Install to 1.3
+
+0.9.9
+==============================================
+OSP-Core: Fixes for Channel Level Webhooks Not Displaying
+OSP-Core: Optimizations on Channel Level Webhooks
+OSP-Core: Fixes to the /user endpoint which causes 500 error on pulling users with channels
+OSP-Core: Added Ability for Admins to Transfer a Channel to Another User
+OSP-Core: Adds Ability for Admins to Force Reset a User Password
+OSP-Core: Optimized /video API routes on all videos and individual video
+OSP-Core: Optmized Updating of Channel Chat Settings
+OSP-Core: Fixes a bug where video comments > 2048 characters would cause a 500 error
+OSP-Core/Ejabberd: Removed the requirement for configuring external Ejabberd access.  OSP will now act as a reverse proxy to Ejabberd's BOSH connection
+
+0.9.8
+==============================================
+OSP-Core: Adds Subscription Count to Channel API
+OSP-Core: Adds Lazy Load to Channel and Admin Settings Stickers, Chat Sticker Picker
+OSP-Core: Optimizes page load for My Channels Settings Page
+OSP-Core: Fixes Bug in Channels Search API
+OSP-Core: Optimization of the List User API Call
+OSP-Core: Various Bug Fixes related to calls to non-existant values
+
+0.9.7
+==============================================
+OSP-Core/OSP-RTMP: Adds WebRTC playback via OvenMediaEngine RTMP Push (*Experimental*). Read more at https://open-streaming-platform.readthedocs.io/en/nightly/usage/streaming.html#osp-web-rtc-playback-experimental
+OSP-Core: Adds Server M3U8 for all active streams -> /m3u8/stream/index.m3u8
+OSP-Core: Adds Server M3U8 for all videos -> /m3u8/video/index.m3u8
+OSP-Core: Upgrades Sentry IO Library to 1.12.1
+OSP-Core: Changed Chat Username Changes to Force a Random name at login, but offer a method to change
+OSP-Core: Removed Startup Code which was causing timeouts on complex servers
+OSP-Core: Extended Gunicorn Startup Process Timeout
+OSP-Core: Fixed Error in Creating a Channel via the API !377 (@Jack Jang)
+OSP-Core: Changed Video Imports to use the filename as the video title with additional info !376 (@Mark Schouten)
+OSP-Core: Set Chat Stickers to lazy load to prevent heavy load on channel connect
+OSP-Core: Bump Flask-Security-Too == 5.1.0
+OSP-Core: Bump Pillow==9.4.0
+OSP-Core: Bump xmltodict==0.13.0
+OSP-Core: Bump flask-caching==2.0.2
+OSP-Core: Bump flask-cors==3.0.10
+OSP-Core: Bump cachelib==0.9.0
+OSP-Core: Bump Greenlet==2.0.2
+OSP-Core: Bump Flask-Restx==1.0.5
+OSP-Core: Bump: Flask-Login==0.6.2
+OSP-Core: Bump Flask-Reuploaded==1.3.0
+OSP-Core: Bump gevent==22.10.2
+OSP-All: Updated ZLIB to 1.2.13
+
+0.9.6
+==============================================
+Nginx-OSP: Moved Core Code of Nginx RTMP to winshining/nginx-http-flv-module.  New Installs will use the new backend. Existing can be migrated using Reset Nginx via osp-config.sh
+OSP-Core: Hourly Task of Cleaning up Guests which have not logged in within the last 3 months
+OSP-Core: Hourly Task of Cleaning up Read/Unread Notifications in DB (90 days for read, 180 days for unread)
+OSP-Core: Optimized RTMP Stage 1, Stage 2, and RTMP Restream API Queries which were causing an issue with Starting a Stream on larger channels
+OSP-Core: Optimized User Channels Settings Page to load and post faster
+
+0.9.5
+==============================================
+OSP-Core: Upgrade Cachelib == 0.8.0
+OSP-Core (Docker): Fixed issue on running DB upgrade via Flask CLI
+
+0.9.4a
+==============================================
+OSP-Core: Fix for Cachelib - downgrade from 0.9.0 -> 0.1.1
+
+0.9.4
+==============================================
+OSP-Core: Dark-Cow, Defaultv2, & Defaultv2-Dark has been removed.
+OSP-Core: Fixes issue where User Deletion via scheduled request was causing an unhandled error when logging
+OSP-Core: Add SQLAlchemy auto-rollback on session failure
+OSP-Core: Fixes issue where an invalid global panel was causing an error on the admin page
+OSP-Core: Corrected issue of 0.9.0.sh upgrader not using the new 'flask db' method of upgrading
+
+0.9.3
+==============================================
+OSP-Core: Fixes a bug where video retention was not working properly
+OSP-Core: Additional Optimization of SocketIO Queries
+OSP-Core: Update SentryIO to 1.6.0
+OSP-Core: Optimization of User Profile Page
+OSP-Core: Stapled Cachelib to 0.1.1
+OSP-Core: Fixes a bug which causes the Channel Panel to display no information
+OSP-Core: Fixes a bug where Channel Level Panels were not displaying in settings after creation
+** Important Note **: Depreciated Themes (Defaultv2/Defaultv2-Dark & Dark-Cow to be Removed in 0.9.4)
+
+0.9.2
+==============================================
+OSP-Core: Fix an issue on User Channels where uploaded stickers are not shown in the UI
+OSP-Core: Fixes an issue where Celery workers were dying prematurely
+OSP-Core: Upgrades Redis-py to 4.3.3
+OSP-Core: Upgrades Celery to 5.2.7
+OSP-Core: Upgrades Click to 8.1.3
+OSP-Core: Upgrades aiohttp to 3.8.1
+OSP-Core: Upgrades pytz to 2022.1
+OSP-Core: Upgrades Flask to 2.1.2
+OSP-Core: Upgrades Flask-SqlAlchemy to 2.5.1
+OSP-Core: Upgrades SQLAlchemy to 1.4.37
+OSP-Core: Upgrades Redis-Py to 4.3.3
+OSP-Core: Upgrades ItsDangerous to 2.1.2
+OSP-Core: Upgrades Jinja2 to 3.1.2
+OSP-Core: Upgrades Werkzeug to 2.1.2
+OSP-Core: Applies Fix to /etc/default/celery which sets Pool Type to gevent
+OSP-Core: Added Catch for Invalid Forwarded IP Address for Guests which may cause the DB to get stuck
+OSP-Core: Cleans up browser console error for when user is not logged in and uploads
+OSP-Core: Fixes Channel Chat when Channel Chat is Disabled
+OSP-Core: Fixes User Search not returning values
+OSP-Core: Fixes for Global Panels, RTMP Servers, and other set initial defaults not showing up after First Run
+OSP-Core: Removes manage.py Database Upgrade Script.  Manual DB Upgrades can now be performed via 'flask db <command>'
+OSP-Config: ** Changes to Upgrade Process ** Git Pull has been removed from the osp-config.sh script.  Pulls are expected to be done by user manually now.
+
+
+0.9.1
+==============================================
+OSP-Core: Fix Invalid Links for Topics
+OSP-Core: Fixes bug when deleting OAuth Providers
+OSP-Core: Fixes a bug in Admin -> Webhooks where edits are not immediately reflected on edit
+OSP-Core: Fixes bug where manually calling a scheduled task would not work
+OSP-Core: Removed a call which was causing DB Session Rollback issue in Celery
+
+0.9.0
+==============================================
+** BREAKING CHANGE **: OSP-Core SMTP Settings have been removed from the DB and added to the config.py.  Check /opt/osp/conf/config.py.dist for SMTP Variables
+** Important Note **: Custom Themes Developed for versions 0.8.x and lower will most likely be broken. Recommended to review any changes under the new Defaultv3 and adjust before upgrade
+OSP General: The OSP Wiki has been moved to https://open-streaming-platform.readthedocs.io/
+OSP-Core: Adds Celery Task Queue and Celery Beat Task Scheduler
+OSP-Core: Adds New Theme Default Theme - Defaultv3
+OSP-Core: Adds Ability to Create Admin Level Custom Panels on Front Page
+OSP-Core: Adds Ability to Create User Level Custom Panels on the Channel Live Page
+OSP-Core: Adds Channel Level and Video Level "Tags"
+OSP-Core: Offloads Recording Completion, Video Delete, Clip Delete, Clip Creation, Video Upload, Webhook Functions to Task Queue for Responsiveness
+OSP-Core: Adds Ability to Set Video Retention at a Global and Channel Level by number of days. Lowest value will be used.
+OSP-Core: Adds Setting to Enable/Disable Global RTMP Restreams
+OSP-Core: Removes Unused Database Columns
+OSP-Core: Adds User to User Messaging System
+OSP-Core: Adds allowRestream and hubUUID to Server API Settings Return
+OSP-Core: Adds Periodic Checks to Check if a Video Contains a Thumbnail
+OSP-Core: Adds Periodic Checks to Check if a Video exists in a correct state (Not Pending and Video Exists)
+OSP-Core: Fixed an Issue where Embedded Video Clips were returning Error 500 - #440
+OSP-Core: Fixed an Issue when OSP will attempt to keep adding the default Topic "Other", even after deletion - #407
+OSP-Core: Fixed an issue where Webhook tests would fail if no Video Recording Existed on a server - #442
+OSP-Core: Updates Pillow to 9.0. to fix various CVEs
+OSP-Core: Added Message Moderation / Deleting of Chat Messages
+OSP-Core: Added well known keyboard shortcuts for videoJS player to play/pause, seek and adjust volume
+OSP-Core: Adds User to User Messaging/Mail
+OSP-Core: Removes APScheduler Assignment
+OSP-Core: Added Channel Invites API Endpoint for getting/adding/removing user invites to a channel
+OSP-Core: New Security UI for Login, Registration, Password Reset, TOTP Configuration
+OSP-Core: Corrects a security issue where video metadata could be edited by a non-owning user
+OSP-Core: Corrects an issue where TOTP + "Remember Me" Setting on Login would result in a 500 error
+OSP-Core: Fix for editing a channel which contains a shortcode that causes the short code to be cleared due to a invalid check
+OSP-Core: Fix for RTMP/Edge handling when Adaptive Streams are Enabled - #459
+OSP-Core: Adds Server Admin Access to View Protected Channels
+OSP-Core: Theater Mode Added to Streams, Videos, & Clips
+OSP-Core: API Endpoints to Add/Remove RTMP Servers Added to apiv1/server/rtmp
+OSP-Core: Adds Option for Admin to Restrict Total Number of User Owned Channels - #294
+OSP-Core: Disables Email Subscriptions from Being Sent When Maintenance Mode is Enabled - #444
+OSP-Core: Adds Option to Set a Channel as Private
+OSP-Core: Created new Endpoint - /apiv1/channels/<channelUUID>/streams
+OSP-Core: Optimized Video JS Monitor Function to Use New Stream API Endpoint and Reduce Load
+OSP-Core: Added Social Network Links for User Bios - #357
+OSP-Core: Added Checks for Channel Protection to a Channel's List View Page
+OSP-Core: Adds ability for admins to edit video and clip metadata and thumbnails #243
+OSP-Core: Adds user settings for e-mail notifications for streams, new videos and messages #261
+OSP-Core: Adds channel option to toggle part/join messages #384
+OSP-Core: Adds channel option for 'messenger' or 'IRC' style chat message format
+OSP-Core: Added ability for a user to flag their account for deletion after 48 hours
+OSP-Core: Upgrades VideoJS to 7.18.1
+OSP-Core: Upgrades JQuery to 3.6.0
+OSP-Core: Upgrades to Bootstrap 5.1.3
+OSP-Core: Upgrades Zlib to 1.2.12 / Fixes Invalid Download URL on Install
+OSP-Core: Adds Playback Speed Rates to Video Playback (.25x, .5x, 1x, 1.5x, 2x)
+OSP-Core: Adds startTime Argument to Clip Player playback, similar to how Video Playback works
+OSP-Core: Additional Database Query Optimization and Caching
+OSP-Core: Added Scheduled Folder Video Ingest under /var/www/ingest/<Channel Location UUID>
+OSP-RTMP: Changes to Support allowRestream setting in OSP-Core
+OSP-RTMP: Fix for RTMP/Edge handling when Adaptive Streams are Enabled - #459
+OSP-RTMP: Moves all Live Stream Playback to use HLS Encryption and Moves Channel Protection to use Key Authorization Validation
+OSP-Proxy: Updates to use HLS Key Encryption via Proxy
+Nginx-OSP: Upgrades New and Reinstalls to 1.22.0
+OSP-General: Upgrades Gevent to 21.12.0
+OSP-General: Upgrades Greenlet to 1.1.2
+OSP-General: Migrates Flask-RestPlus to Flask-RestX 0.5.1
+
+0.8.17
+==============================================
+OSP-Core: Fixes clipplayer.html caching issues
+OSP-Core: Fixes Incorrect Live Viewer Counter on Stream Cards per Issue #433
+OSP-Core: Enhanced Logging Structure within OSP-Core, adding a new config.py variable (log_level) to configure the Log Level returned to /opt/osp/logs/osp-error.log
+
+0.8.16
+==============================================
+OSP-Core: Added /Search API Calls for Videos, Clips, Users, Streams, Channels and Topics - Returns ID value, Name, UUID (if available), and any other information for future search bar
+OSP-Core: Fixed an issue displaying Clips on Channels with Subscriptions due to DB Caching
+OSP-Core: Fixed and issue where validation of domain names was causing 405 error on FirstRun Setup
+
+0.8.15
+==============================================
+OSP-Core: Added per channel option to allow unauthenticated users to provide nickname or use generated nickname
+OSP-Core: Fixed a security issue where any authenticated user could alter any channel's chat settings (Room name, Description, Moderation Status)
+OSP-Core: Fixed a security issue where an unauthorized user with streamer roles could add stickers to any channel
+
+0.8.14
+==============================================
+OSP-Core: Added the ability for unauthenticated visors to provide a nickname in chat per issue #241
+OSP-Core: Upgraded VideoJS to 7.14.3
+OSP-Core: Fixed an issue where posting a comment generated a 500 Error
+OSP-Core: Fixed an issue where Video Comments were not showing
+
+0.8.13
+==============================================
+OSP-Core: Added option for Metrics & Logging via Sentry.IO (Disabled by Default)
+OSP-Core: Moved some logging from print(logitem) to logging.<level>(logitem)
+OSP-Core: Fixed Redis authentication issues with Passwords
+
+0.8.12
+==============================================
+OSP-Core: Fixes an issue where /Channels page gives a 500 error if Show Empty Tables is set to False
+OSP-Core: Fixes an issue where the dbFixes() function does not update the System Settings due to caching
+OSP-Core: Added Caching for Get_VideoCommentCount Template Filter
+OSP-Core: Added Caching for Get_Username Template Filter
+OSP-Core: Changed videoViewList.html to work with optimized queries **Note:** Custom Themes will need to be changed to use template filters as in these files as some DB Object subqueries will no longer work and will cause errors
+
+0.8.11
+==============================================
+OSP-Core: Fixed Topic URL link link to point to /topic/ not /topics on DarkCow Live Page #421 - 348f96cd94e1044dd1ded262b5aab5649c09b503
+OSP-Core: Fixed an issue where System Settings Cached DB Calls were not invalidating properly #422 -2417a7485391879dd6d20273eab43b64b631be11
+OSP-Installer: Fixed an issue where osp-config.sh was not performing the correct update procedure due to duplicate entries #419 - 7ed83d77547f83cab2baf2e3b79a891828bfcd68
+
+0.8.10
+==============================================
+OSP-Core: Added /apiv1/server/ping endpoint for up/down checks - 1678bc6d4b35d087e3f1a06d046afc706d62b449
+OSP-Core: Added ejabberdServerHttpBindFQDN config.py variable to handle issues with Docker - b25d6166e42ff32af631ea6f1e04cb659e2efda9
+OSP-Core: Fixes an issue where the the Channel Creation API would return Unsupported Operand #415 - 2ac68c849ba49ed6c0f05138736b8740e2fafe6f
+OSP-Core: Fixes an issue in User Creation API which would return an error #418 - 52b83f0c7f68dc28cbf3d9279063e40e9f1b7b73
+OSP-Core: Fixes User Deletion to Remove all Channels, Videos, owned by deleted user
+OSP-Core: Adds /migrations to Git Ignore - 71e80a0bd7ed70e957d9ed59324717c15fdb46ac
+OSP-Core: Optimized a handful of database queries for reducing latency
+OSP-Core: Added Flask-Caching to use Redis to Cache Database Queries - Idea provided by @markboggs via MR !283
+OSP-Core: Changed channels.html and vidplayer.html to work with optimized queries **Note:** Custom Themes will need to be changed to use template filters as in these files as some DB Object subqueries will no longer work and will cause errors
+
+
+0.8.9
+==============================================
+OSP-Core: Added the ability to hide an RTMP server from displaying as a stream endpoint on the "My Channels" page - ed468058e097f044f8a68ad541fa31065ed1d0f9, 830898296b06525641ad6555f24a9ca5a1c790ff
+OSP-Core: Corrects SMTP ssl.SSLError [WRONG_VERSION_NUMBER] issues using the "Test Email" Feature in First Run and Settings - MR !272
+OSP-Core: Corrected an issue where Protected Channel Live Views were causing a 500 error due to Session detachment - 7d4c3dfb621ba5e7c8746bf16c0a814e40b3f859
+OSP-Core: Fixed APIKey type confusion bug - 6b7a2304760cc747dd7548d3bb48f38c37b6ffee
+OSP-Core: Changed Label for Channel change commit button from "Edit" to "Save" - Issue #395 - 015aad00ba4c97051890536c69e8452154f6c10a
+OSP-Core: Minor UI and HTML refactor Tweaks - MR !277
+OSP-Core: Upgraded Pillow to 8.2.0 for CVE-2021-28675, CVE-2021-28676, CVE-2021-28677, CVE-2021-25287, CVE-2021-25288, & CVE-2021-28678 - 73591a4f39e56f00672cf8bd177da1307c2050e5
+OSP-Core: Upgrade Flask-Cors to 3.0.9 for CVE-2020-25032 - f3bbe83ea81dc561cd8cd40df0983004b0198fcb
+OSP-RTMP: Upgrade Flask-Cors to 3.0.9 for CVE-2020-25032 - f3bbe83ea81dc561cd8cd40df0983004b0198fcb
+
+0.8.8
+==============================================
+** NOTE ** This version will require a manual change with Nginx configurations on upgrade - See (https://wiki.openstreamingplatform.com/Install/Upgrading#versions-088-to-versions-088) prior to updating from any version before 0.8.8
+All: Reworked how Nginx Handles Custom Parameters.  All Custom Inputs for Nginx have now been moved to /usr/local/nginx/conf/custom/osp-<modulename>-custom-purpose.conf.
+OSP-Proxy: Added New OSP-Proxy Service.  Acts as an Edge Nginx HLS Proxy.  Instead of receiving a full copy of all streams like OSP-Edge, it pulls video as needed from the RTMP servers and caches as needed.
+OSP-Config: Added Creation of the /var/www/images/stickers directory during install so permissions are set properly to www-data
+OSP-Core: Added Endpoints required to handle OSP-Proxy.
+OSP-Core: Set Chat Window to be cleared on Reconnection to prevent duplicate chat messages
+OSP-Core: Updated Pillow to 8.1.2 to fix CVE-2021-27923
+OSP-Core: Reduced the size of the SocketIO call for getViewerTotal in live channels to reduce live channel CPU usage
+OSP-Core: Reduced the size of the XMPP Sanity Check Queries to reduce live channel CPU usage
+OSP-Core: Removed Duplicate Channel Query from liveview.py during Channel View
+OSP-Core: Added return of Channel Owner's Username to apiv1/channel/
+OSP-RTMP: Fixed Remaining RTMP Restream/Adaptive transcoding issues regarding wrong or unstable pull locations
+OSP-RTMP: Added Endpoints for OSP-RTMP HTTP(s) Reverse Proxy Pull
+
+0.8.7
+==============================================
+OSP-Core: Fixed an Issue where OSP would not load properly on first run due to checking for theme overrides that had not been set yet - Issue #366
+OSP-Core: Fixed and Issue where all Channel Stickers were showing up in all Channels
+
+0.8.6
+==============================================
+OSP-Core: Added Chat Stickers.  Stickers can be added at the Global Level or Channel Level.  Also includes a small set of OpenEmoji Built-In Stickers
+OSP-Core: Added Sanity Checks for fs_uniquifier to ensure a random value has been assigned
+OSP-Core: Fixes to Guest IP/UUID Tracking running off the rails and generating unneeded Database entries
+OSP-Core: Fixed an issue where Custom Theme HTML Override was not applying when restarting OSP
+OSP-Core: Altered the Chat Window Size on Defaultv2 and Defaultv2-Dark from 550px width to 35%
+OSP-RTMP: Fixes to RTMP Adaptive Streaming caused by a fix done in 0.8.4 regarding RTMP playback authentication
+
+0.8.5
+==============================================
+OSP-RTMP: Fixes to RTMP Restreaming
+
+0.8.4
+==============================================
+OSP-Core: Changed Admin Webhooks Formatting
+OSP-Core: Added Vanity URL to Public Channel APIv1 Return
+OSP-Core: Refactored OSP-Core Startup Processes
+OSP-Core: Refactored OSP-APIv1 into Namespaces
+OSP-Core: Due to a change in Flask-Security-Too, the Login page will now only allow login via registered email address, instead of username.
+OSP-Core: Added TOTP 2FA.  Users can now add 2FA using Google Authenticator, Authy, Duo, or any other TOTP App in User Settings
+OSP-Core: Added Option for Admins to Disable 2FA for a User
+OSP-Core: Removed /playbackauth and added /apiv1/rtmp/playbackauth for moving rtmp playback authentication verification to OSP-RTMP
+OSP-Core: Added /apiv1/user/ endpoint for user creation and deletion
+OSP-Core: Added /apiv1/user/role endpoint for role assignment and removal
+OSP-Core: Set New User Username and Email Validation to require real values.  Usernames now restricted to [a-zA-Z0-9_-]
+OSP-Core: Changed BanList Display Panel ID from bannedUsers to modDisplay in channeplayer.html
+OSP-Core: Changed Ban List Display Button ID from banListButton to modDisplayButton and onclick from openBanList() to openModDisplay() in channelplayer.html
+OSP-Core: Changed banListOverlay CSS Class to modDisplayOverlay in channelplayer.html and theme.css files
+OSP-Core: Added Restriction of 750 Characters per XMPP Chat Message
+OSP-Core: API Change - Moved /channel/authed/<channelLoc> into /channel/<channelLoc> and added option for optional authenticated view using api-key
+OSP-Core: Removed JSON based backup/restore due to sizing issues.  Backups should be performed via MySQL.
+OSP-RTMP: Set RTMP playback auth to query OSP-Core API
+
+0.8.3
+==============================================
+OSP-Core: Fixed a bug in chat.js that caused all chat messages to have **** after every letter if the banned chat list was blank
+
+0.8.2
+==============================================
+OSP-Core: Changed OSP-Edge Playback endpoint redirect
+OSP-Core: Set OSP-Edge Configuration File Rebuild on Boot as an option, Defaults to True
+OSP-Core: Added Manual OSP-Edge Conf Rebuild Button
+OSP-Core: Added Table channelBanList for future full channel banning and tracking of chat channel bans
+OSP-Core: Fixes in channelplayer.html for Chat Banned Users List Showing User's UUID instead of Username.
+OSP-Core: Fixed an error where an invalid RTMP server error log generated was incorrectly typed as a string
+OSP-Core: Updated List of RTMP Ingests on User Channels page to include all active RTMP servers Authorized
+OSP-RTMP: Changed OSP-Edge Restream endpoint
+OSP-RTMP: Changed RTMP HLS Fragment Naming Scheme to Sequential
+OSP-Edge: Changed Ingest RTMP and Playback endpoints
+OSP-Edge: Added Checks for Idle/Dropped Streams
+OSP-Edge: Changed RTMP HLS Fragment Naming Scheme to Sequential
+OSP-Config: Added Missing OSP-Edge Upgrade Option
+OSP-Config: OSP-Edge Install and Upgrades now allow for multiple IPs for configuring the authorized RTMP and Core Servers with commas
+ejabberd: Fixed a bug in the auth_osp.py where is was ignoring accessing the local host api endpoint and was using the given xmpp domain address
+
+0.8.1
+==============================================
+OSP-Core: Added the Ability for Guests to View Protected Channels using Invite Codes.  Codes are Stored in the Guest's Server-Side Session Store and are Removed on OSP Restart
+OSP-Core: Added StreamHistory Table for Future Use
+OSP-Core: Fixed an invalid call for adding XMPP Disco Identity
+OSP-Core: Fixed an early closure of the database when processing recordings, causing a logging error.
+OSP-Core: Fixed an issue where Flask-Security was attempting to load itself twice, causing a blueprint conflict on first run.
+OSP-Core: Rewrote process for determining video length.  Should no longer report the length as Unknown on long videos
+OSP-Core: Added check if video exists in location prior to loading
+OSP-Config: Fixed an incorrect path for auth_osp.py when performing an ejabberd reset
+OSP-Config: Fixed an issue where FFMPEG was not installed with OSP-RTMP
+OSP-Config: Removed superfluous FFMPEG install calls
+OSP-Config: Fixed an issue where the OSP-RTMP would not stream until restarted one time
+OSP-Config: Added an extra dialog on installing OSP-Edge for the OSP-Core Server IP
+
+0.8.0
+==============================================
+Split all subsystems of OSP into separate services.  This will allow OSP to be scaled to multiple servers/processes.
+Enabled SECURITY_TRACKABLE to allow for future IP Address filtering
+Added Google ReCaptcha to Registration as an option for Reducing Spam Bots from Registering Users
+ejabberd Usernames are now tracked by User UUID to prevent issues where a username may contain invalid characters.  User UUIDs can be found in the user settings screen
+Fixed an issue where Users created in the Admin Console did not have XMPP Tokens or UUIDs
+Changed Formatting of User Settings Page
+Added Storage Usage to User Settings Pages
+Removed userSettings.html from Dark Cow
+Moved RTMP Authentication Checks to Separate Function
+Added APIv1 Endpoint for RTMP Authentication Checks and Processing
+
+
+0.7.9
+==============================================
+Corrected an issue where guests popping out chat did not load under defaultv2 based themes
+Decoupled ejabberD server addresses from OSP core.  Can be defined as ejabberdServer in the config.py.  Must be FQDN and match the OSP http(s) protocol.  Leave blank to use server address. More info at https://wiki.openstreamingplatform.com/en/Install/Chat#external-server
+Made modifications to the Defaultv2 Live View Themes to prevent video screen shuttering/bouncing
+Adjusted method for counting total views of a live stream to prevent inaccurate numbers
+Added a new check for new streams to pull the values of current XMPP channel members for current viewers and total viewers
+Added RTMP ingest hint under streamkey in User Channels page per Issue #283
+
+0.7.8
+==============================================
+Fix to Dark-Cow missing RTMP Restream modal
+
+0.7.7
+==============================================
+Fix to Topics showing as "None"
+Fixes to the way multistreams are terminated
+Added New API Endpoint /channel/authed - Provides authenticated details for a channel using API Keys
+Fixed missing restore value for Channel's VanityURL on DB Restore
+
+0.7.6
+==============================================
+Implemented Multiple RTMP Restreams. Accessible at the bottom of the Channel's settings screen.
+Fixed a bug with VanityURL causing a "Specified key was too long; max key length is 3072 bytes" on new DB Creation
+
+0.7.5
+==============================================
+Changed Comment links to point to /profile/username
+Reworked Admin List UI for Users, Channels, Topics, & Streams
+Added Ability to Bulk Add Roles to Users - Per Issue #213
+Added Loading Spinner to Some Buttons
+Added Video Not Ready Error page when a video is still processing
+Added Short Links - A channel unique short url for channels and live views.  Accessed at http(s)://fqdn/c/<shortlink> and http(s)://fqdn/c/<shortlink>/live - Issue #259
+Added Short Link for User Profiles - Accessed at http(s)://fqdn/u/<username>
+Fixes for Custom oAuth authentication
+
+0.7.4
+==============================================
+Added Ability to set a default role set for new users - Issue #110
+Added countViewers url argument for embedded streams.  Set ?countViewers=false on url for live streams to prevent live viewers from counting against live view counts
+Added server-wide max_users setting to the default ejabberd config file and set default to 2500
+Change Split a VideoJS Call per Merge Request !204 to correct issues on Safari/iOS
+
+0.7.3
+==============================================
+Fixes to OAuth2 that prevented new users
+
+0.7.2
+==============================================
+Removed ability to have spaces in username. ** All existing users with spaces will be converted to having an underscore in the space location! **
+Additional tweaks to the osp-config.sh file regarding install/reinstall of ejabberd
+Changed Video Clipping Process to transcode the video to prevent audio desync.  Clips may take a few seconds longer, depending on length and quality.
+Added sysctl.d tweak to /opt/osp/setup/sysctl.d directory - See https://wiki.openstreamingplatform.com/en/Install/Tweaks#tcp-tweaks
+Changed new DB length for Biographies and Channel Description from 2048 to 4096.
+Changed new DB Length for Server MOTD from 2048 to 8192.
+Changed the /user API endpoint to list owned channe UUIDs, not just IDs
+Changed the /user API endpoint to point to the Profile Page, not the streamer page
+Added EJabberD Indicator to the Admin Dashboard Page to indicate if there is an issue
+Increased Thumbnail Generation delay from every 60s to every 120s to assist with slower CPUs handling ffmpeg thumbnail generation per issue #214
+** Note: If upgrading from a version prior to 0.7.0, please run the /opt/osp/setup/upgrade/0.7.0.sh file after running the standard upgrade from osp-config.sh **
+
+0.7.1
+==============================================
+Fixes to Typos that caused new users to generate 500 error
+Fixes to XMPP where users with a space in their username would cause chat to never connect
+Fixes to Restoring DB backups which would cause a 500 error if an invited user had an infinite expiration
+Added new option to osp-config.sh to allow reinstallations of EJabberD installs to correct any issues
+Modifications to Arch Install Packages per Issue #238
+** Note: If upgrading from a version prior to 0.7.0, please run the /opt/osp/setup/upgrade/0.7.0.sh file after running the standard upgrade from osp-config.sh **
+
+0.7.0
+==============================================
+Chat has been reworked! All chat now uses an XMPP backend via ejabberd.  Config files for ejabberd can be found in /usr/local/ejabberd/conf/ejabberd.yml
+Fixed an issue where Authenticate Type was not set to local when creating a user via the Admin Settings Page
+Removed Resolvable Hostname Check which was unused
+Safari Improvements to Dark-Cow
+Updated Flask-SocketIO to 4.3.0
+Updated Python-EngineIO to 3.13.0
+Updated Python-SocketIO to 4.6.0
+Fixes for Renaming Clips which was causing a crash
+Fixes for places where Password Fields were autocompleting in dark-cow
+Docker Files has been decoupled from the primary repository and are now located at https://gitlab.com/Deamos/open-streaming-platform-docker
+Fixes for Opengraph Meta data to use the system settings for protocol and site address
+Updated JQuery to 3.5.1
+Adjusted APIv1 Endpoints to match singular
+- /apiv1/channels -> /apiv1/channel
+- /apiv1/topics -> /apiv1/topic
+- /apiv1/vids -> /apiv1/video
+- /apiv1/topics -> /apiv1/topic
+- /apiv1/streams -> /apiv1/stream
+Moved Endpoint for Streamer Page to match singular
+- /streamers -> /streamer
+Fixed an issue where clip thumbnails generated by using the "Change Thumbnail" button on the Clip player and User Channel Setttings Page were generating based on the original video, not the clip
+
+Beta-6d
+==============================================
+Fix for Missing CSS file for Stream Iframe Embeds
+Fix for Clips and Owners with No Picture per Issue #208
+Playsinline added to video tags to enable inline/fullscreen play for IOS
+
+Beta-6c
+==============================================
+Fixed Video Clip Process Broken
+
+Beta-6b
+==============================================
+Fixed Issue where Thumbnails were not being generated for Uploaded Videos
+Fixed Issue where Offline Channel Images and Chat User Pictures were not displaying as default images on restore of a backup where the original was never set and was using default
+Fixed Issue where Upvote status returns were returning after a long delay causing confusion and a mixed up display
+Tweaks made to the Clipping Configuration to prevent keyframe issues on Video Clips
+
+Beta-6a
+==============================================
+Fixes for Redis Password being set to None instead of '' and causing an issue starting
+Fixes for SQLite Instances due to Unique Constraint
+Fix for Adaptive 420p bit rate values being underset
+
+Beta-6
+==============================================
+** Important Note: Users will need to manually copy all osp-*.conf files from /opt/osp/setup/nginx to /usr/local/nginx/conf and restart the nginx-osp service after running the standard upgrade
+
+Brand New Logo - Courtesy of @curldev in Discord
+Refectored app.py to submodules
+Clips will no longer be "fake" timestamp hacked clips. Clips will be separate video files.  Existing Clips will be converted on upgrade.  Be aware of increased storage usage prior to upgrade.
+Added Clip Constraints.  Admins may now set a maximum length allowed for Clips, Can be set to infinite.  Upgraded OSP instances will be set by default to infinite while new installs will be set to 1m30s.
+Added OAuth2 Authentication and Ability to Convert Local Logins
+Fixes for Redis instances with Passwords
+Added Confirmation Dialog for Deletion of Channels in Admin Interface
+Added Confirmation Dialog for Deletion of Channels in User Channels Interface
+Added Ability to Select Sort for the Main Display Page
+Added a Maintenance Mode where only Admins may log in.  All others are redirected to maintenance page.
+Added Topic Option to Uploaded Videos per Issue #189 (https://gitlab.com/Deamos/flask-nginx-rtmp-manager/-/issues/189)
+Added Webhook Testing for Global and Channel Level Webhooks
+Adjustments to the Nginx-RTMP Configuration Files to allow the main OSP Instance to also act as an Edge Streamer Node - You can add by using the exact hostname as the Site Address in Admin Settings
+Added Adaptive Quality Selector to Adaptive Streams
+Adjusted VideoJS Monitor Script during Live Streams to Recover from a ReadyState=2 -> ReadyState=1 Issue
+Adjusted osp-config.sh script to automatically replace all Nginx configuration files except nginx.conf
+Added Option to osp-config.sh script to reload all default Nginx Configuration Files
+Added Version Specific Upgrade Process Shim in osp-config.sh. Version Specific Upgrade Scripts will be located in /opt/osp/setup/upgrades/$version.sh
+Updated 404 and 500 pages for cleaner, less static filled look
+Added UUIDs to Videos, Clips, and Users for future update
+Fixed an issue where Protected Adaptive Streams were not generating hls fragments
+Updated Video JS to 7.7.6 - Corrects IOS issues on video and stream playback
+Removed EasyMDE automatic download of Font Awesome and Other External Dependencies
+Refactored Theme Logic - Themes no longer require a separate security directory
+Refactored Theme Layout - Themes now expect layout for CSS files to be as follows: /opt/osp/static/css/<themename>/theme.css
+Added Saving of Video Player Volume to stored cookie under 'ospvolume'
+Changing System Logo will now update the Favicons
+Tooltips added to all players in Defaultv2
+Fixed an issue with Streaming Role was required for using an invite code
+Added Additional Checks to Ensure accurate live view count
+Fixes Embedded Stream to Allow Embed Views to count against Live Count
+Upgraded Requests from 2.18.4 to 2.20.0 - CVE-2018-18074
+Upgraded psutil from 5.6.3 to 5.6.6 - CVE-2019-18874
+Fixes to Prevent an Admin User from Disabling or Deleting Themselves
+Fixes to First Run to force required settings.
+
+Beta-5b
+==============================================
+Added CORS header for APIv1 Endpoint
+Fixed an issue with Redis Authentication where OSP would not use the Password to Connect
+Fixed issue with docker-compose where OSP was starting before the database had started
+Added new control script, osp-config.sh for Install/Reinstall/Restarting of Services/Upgrading
+Removed dbUpgrade.sh in favor of osp-config.sh
+Removed osp-setup.sh in favor of osp-config.sh
+Confirmation Dialog added to Deletion of Webhooks per Issue #178
+
+Beta-5a
+==============================================
+Corrected an Error where having Video Recordings disabled at a system level caused an error in changing User Channel Settings
+Added the ability for Admins to delete Live Stream entries for when a stream may get stuck
+Starting work to disconnect Nginx-RTMP Domain/IP hard requirement for Streaming to function.  SysSettings.siteAddress will no longer cause Stream Failures if incorrect.
+Added ability to set environment variables to configure the Docker OSP container without having to use the First Run Setup
+
+Beta-5
+==============================================
+Added RTMP Restreaming to 1 Destination per Channel
+Added specific values to Resource Statatistics on the Admin Dashboard Page
+Added the ability to change the Server MOTD Title from the Admin page
+Added Support for the OSP Edge Streamer Server
+Added New Roles for Uploaders and Recorders.  Will need to be added to users who already have Streamer Rights
+Added a link to the raw Nginx-RTMP stats on the Admin page for the master node.
+Significant SQL Refactoring to reduce delays and latency.  May affect variables used in custom themes as not all variables are passed on to Jinja2
+Updated Setup Script to support Arch Linux
+Added Postgres SQL dependencies for Standard Install and Docker
+Updated Contributed Docker-compose.yml to setup with Mariadb and Health Checks
+Changed the default help page to the new Wiki site at https://wiki.openstreamingplaftform.com
+Added Contributed UFW and Telegraf configuration files
+Added Tooltips to Contol buttons on Video View Page
+Fixed an issue where video uploads without a channel created would generate an error
+Fixed missing menu items for Subscriptions and About in Defaultv2-Dark
+Tied Channel User counts to Session Cookie IDs, preventing Socket ID bouncing from causing Double numbers
+Fixed an Issue where missing values could cause webhooks to not send
+Fixed issues where Emails would not be sent for Subscriptions and Registration
+
+Beta-4b
+==============================================
+Added Check for if Channel Location is Invalid on Stream
+Fixes for Descriptions Not being Inline per Issue #129
+Fixes for libssl in Docker
+Fixes for being unable to give more than one channel invite to a user
+Added Rollover Gifs for Videos, Clips, and Streams
+Fixes for not being able to change Channel AutoPublish Setting
+Added GZIP Compression for NGINX files
+Added TCP_NOPUSH for Sendfile in NGINX
+Fixed Embedded Streams not Displaying the "Offline" Image and Not recovering properly on a new Stream
+
+** Note: A DB Upgrade will be Required.  Follow DB Upgrade Procedures **
+** Note: You will need to replace your existing nginx.conf and osp-rtmp.conf files with the new files located in /opt/osp/setup/nginx **
+
+Beta-4a
+==============================================
+- Fixes to Themes not loading on initial installs
+- Added --with-cc-opt="-Wimplicit-fallthrough=0" to setup script to allow building on newer gcc
+
+Beta-4
+==============================================
+- Added Worker Services on local ports (5000-5010) for OSP Gunicorn to handle multiple concurrent users
+    * Note: OSP must now be started and stopped using systemctl start/stop/restart osp.target
+- Passed Authentication Validation to Nginx instead of passing through Gunicorn First.
+    * Note: This will require a new recompile of Nginx by using the setup script or compiling manually as well as updating the osp-redirects.conf and nginx.conf
+- Moved Async Processing to use Redis.
+    * Note: New Configuration Variables have been added to the config.py file which are required.
+    * Note: Redis is not included in the Docker Image and must be installed in a separate container or server for OSP to work
+- Added Stream Chat Restriction of 1 Message / 2 Seconds to prevent chat spam or flooding
+- Added Notifications for Various Events such as New Streams, New Videos, New Comments, Likes, etc
+- Added Video, Clip, Channel, and Stream Sorting
+- Added the ability to Publish and Unpublish Videos and Clips
+- Added an option to Channels to Autopublish Videos (Enabled by Default)
+- Added Recommended Profile Picture Resolution
+- Added Switch to Enable/Disable the Channel Protection system due to the slight overhead on pulling videos and images. System default on new installs will be disabled. Existing installs will be enabled on upgrade.
+- Switched from Flask Security to Flask-Security-Too
+- Fixed Issue where Themes would not load properly after changing in settings, but would work on a restart
+- Reformated Display Cards to v3
+- Reworked User Channel Screen
+- Added Per Channel Video Control from the User Channel Screen
+- Fixed issue where Defaultv2-Dark's Popout Chat retained the Defaultv2-Light's theme
+- Moved Gunicorn Logs to /opt/osp/logs
+- Updated Flask-SocketIO to 4.2.1
+- Fixed Issue where Channel Subscriptions were not being restored from backups
+- Fixed Variables causing Type Confusion
+- Fixed Issue where Video and Clip Thumbnails were being generated based on the current video player timestamp, instead of the timestamp of the last captured screenshot
+- Movement of References to Prevent Calls before they are Referenced
+- Fixed Issue where Creating a Channel via APIv1 caused an error
+- Fixed an issue where Video Comments may cause an error preventing the video from being viewable
+
+
+
+Beta-3
+==============================================
+- Added Implemented Video Clips - Set markers for videos to display only a section of a video you want to share.
+- Added Streamer Biographies
+- Added Server MOTD on main page
+- Added Markdown Support for all Text Area type fields
+- Added Mail Settings Testing on First Run and Admin Settings Pages
+- Added the Option to Set a Default Stream Name instead of Timestamp
+- Added the Ability to set a Custom Invite Code
+- Added RTMP Stats endpoint in the nginx.conf file and Display the information in the Admin Dashboard
+- Added Open Graph Metadata to the Video, Stream, and Clip pages
+- Added the Option for Channel Owners to Disable the Chat Joining/Leaving Notification
+- Added Global Webhooks
+- Added Theme Override Options for Theme Developers who want to just create a custom CSS file without needing to maintain a full theme file set
+- Added Checks for the Server Address IP/DNS Settings in the Admin Menu
+- Added Thumbnail location for Streams to APIv1
+- Added Support for OSP Site-wide Search
+- Added Favicons
+- Added Email Channel Subscriptions.  Be notified when a Stream is Live or a new Video is posted.
+- Added On Hover Animation for Link images for most pages in Defaultv2
+- Added a new configuration variable in the Admin Settings to specify if the site is being served by http or https
+- Added Server Admin logs for Events and framework for adding additional log entries in the future
+- Fixed Method for determining current viewers of a Live Stream, making the value more accurate
+- Upgraded FFMPEG to 4.2 as default for OSP Installs
+- Reworked the Nginx.conf file to split off the OSP specific into their own included osp-*.conf files to reduce the need of reworking the single file
+- Added HTTP2 Support to the default install of OSP.  Upgrading Users should run the Manual Install Procedures to Upgrade their Nginx systems to the most recent build to add support
+- Reworked Admin Pages to Return the the last Tab on Settings Changes
+- Changed the First Run Page to allow for Restore of Backup Files without needing to do a dummy setup first
+- Fixed TextArea MaxLength Restrictions to match database restrictions
+- Fixed a Dropzone error which was displaying on the Defaultv2 and Defaultv2 Themes
+- Fixed Chatboxes from using Autocomplete
+- Fixed Some instances of Videos not showing their Protected Status when in "Other Videos"
+- Fixed an issue which caused adaptive streaming to not stream in 1080p
+- Moved the "Allow Users to Register" and "Required Email Validation Settings" Options to the config.py file due to issues with Flask-Security not adhering to the settings
+- Fixed Issues with how Docker was handling Volumes and Mounts, causing configuration files to disappear and crashing OSP
+- Fixed Sizing and Positioning of Chat Popouts to allow for variable viewport sizes
+- Fixed an issue where changing of a user's email address would cause a 500 Error
+- Fixed Issues where Backups were not restoring properly on Debian
+- Fixed an Issue where Users would receive an unpacked variables error on email sending
+- Fixed an Issue where emails would send as noreply@localhost instead of the set value
+- Reduced the Delay for Chat User Listings from 30s to 5s
+- DB Improvements to prevent orphaned entries
+- Changed Topics page to sort by Name
